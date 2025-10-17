@@ -24,7 +24,7 @@ public class StringCalculatorTest {
         String[] result = stringCalculator.separateString(testString);
 
         // then
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).containsExactly(expected);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class StringCalculatorTest {
         int[] result = stringCalculator.convertToIntArray(testArray);
 
         // then
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).containsExactly(expected);
     }
 
     @Test

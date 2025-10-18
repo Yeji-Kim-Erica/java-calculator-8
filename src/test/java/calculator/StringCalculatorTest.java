@@ -14,69 +14,41 @@ public class StringCalculatorTest {
         stringCalculator = new StringCalculator();
     }
 
+    // 정상 케이스 -----
+
     @Test
-    void 기본_구분자로_문자열_분리() {
-        // given
-        String testString = "1,2:3";
-        String[] expected = {"1", "2", "3"};
-
-        // when
-        String[] result = stringCalculator.separateString(testString);
-
-        // then
-        assertThat(result).containsExactly(expected);
+    void calculate_정상_기본구분자() {
+        assertThat(stringCalculator.calculate("1,2:3")).isEqualTo(6);
     }
 
     @Test
-    void 문자배열을_숫자배열로_변환() {
-        // given
-        String[] testArray = {"1", "2", "3"};
-        int[] expected = {1, 2, 3};
-
-        // when
-        int[] result = stringCalculator.convertToIntArray(testArray);
-
-        // then
-        assertThat(result).containsExactly(expected);
+    void calculate_정상_공백포함() {
+        assertThat(stringCalculator.calculate("1,2 : 3")).isEqualTo(6);
     }
 
-    @Test
-    void 숫자가_아닌_문자_포함시_예외발생() {
-        // given
-        String[] testArray = {"1", "r", "3"};
+    // 예외 케이스 -----
 
-        // when & then
-        assertThatThrownBy(() -> stringCalculator.convertToIntArray(testArray))
+    @Test
+    void calculate_숫자가아닌문자_예외발생() {
+        assertThatThrownBy(() -> stringCalculator.calculate("1,r,3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 빈문자열_포함시_예외발생() {
-        // given
-        String[] testArray = {"", "2", "3"};
-
-        // when & then
-        assertThatThrownBy(() -> stringCalculator.convertToIntArray(testArray))
+    void calculate_빈문자열_예외발생() {
+        assertThatThrownBy(() -> stringCalculator.calculate(":2,3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void zero_포함시_예외발생() {
-        // given
-        String[] testArray = {"0", "2", "3"};
-
-        // when & then
-        assertThatThrownBy(() -> stringCalculator.convertToIntArray(testArray))
+    void calculate_0포함_예외발생() {
+        assertThatThrownBy(() -> stringCalculator.calculate("0,2,3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 음수_포함시_예외발생() {
-        // given
-        String[] testArray = {"1", "-1651", "3"};
-
-        // when & then
-        assertThatThrownBy(() -> stringCalculator.convertToIntArray(testArray))
+    void calculate_음수포함_예외발생() {
+        assertThatThrownBy(() -> stringCalculator.calculate("1:-1651,3"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

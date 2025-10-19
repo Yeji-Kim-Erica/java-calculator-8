@@ -15,6 +15,7 @@ public class InputView {
         return camp.nextstep.edu.missionutils.Console.readLine();
     }
 
+    // 계산기 시작 안내 문구 출력
     private void displayInitialPrompt() {
         System.out.println(INITIAL_PROMPT);
     }

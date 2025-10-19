@@ -83,7 +83,7 @@ public class StringCalculator {
         return number;
     }
 
-    // 변환된 숫자가 양수인지 유효성 검사
+    // 양수 유효성 검사
     private int validatePositive(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_NUMBER.getMessageWithCause(number));

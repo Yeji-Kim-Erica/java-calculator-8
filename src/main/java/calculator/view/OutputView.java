@@ -1,4 +1,4 @@
-package calculator;
+package calculator.view;
 
 /**
  * 연산 결과를 출력하는 클래스

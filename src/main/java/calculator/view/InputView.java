@@ -1,4 +1,4 @@
-package calculator;
+package calculator.view;
 
 /**
  * 사용자로부터 연산할 문자열을 입력받는 클래스
